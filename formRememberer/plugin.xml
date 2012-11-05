@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.asfusion.mango.plugins.formRememberer" name="Form Rememberer" version="1.1" provider-name="AsFusion" class="formRememberer.PluginHandler">
+<description>Fills comment forms with user information (stores info in a cookie)</description>
+<requiresVersion match="greaterOrEqual">0.2</requiresVersion>
+  <listens>
+  	<event name="beforeIndexTemplate" type="synch" priority="5" />
+	<event name="beforeArchivesTemplate" type="synch" priority="5" />
+	<event name="beforeOuputTemplate" type="synch" priority="5" />
+	<event name="beforePageTemplate" type="synch" priority="5" />
+	<event name="beforePostTemplate" type="synch" priority="5" />	
+	<event name="beforeCommentAdd" type="synch" priority="5" />
+	<event name="beforeCommentFormEnd" type="synch" priority="5" />
+  </listens>
+</plugin>

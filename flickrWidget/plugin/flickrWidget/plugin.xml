@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.asfusion.mango.plugins.flickrWidget" name="Flickr Widget" version="1.2" provider-name="AsFusion" class="flickrWidget.Handler">
+<description>Shows a slide show of Flickr photos</description>
+<requiresVersion match="greaterOrEqual">1.1</requiresVersion>
+  <listens>
+  	<event name="beforeHtmlHeadEnd" type="synch" priority="5" />
+  	<event name="getPods" type="synch" priority="5" />
+  </listens>
+  
+   <listensAdmin>
+		<event name="settingsNav" type="synch" priority="5" />
+  		<event name="showFlickrWidgetSettings" type="synch" priority="5" />
+  		<event name="getPodsList" type="synch" priority="1" />
+  </listensAdmin>
+</plugin>

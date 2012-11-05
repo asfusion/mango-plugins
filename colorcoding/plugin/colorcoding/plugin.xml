@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.blueinstant.colorcode" name="Color Coding" version="2.0" provider-name="BlueInstant" class="colorcoding.Colorer">
+<description><![CDATA[
+Adds color coding to blocks marked as &lt;code&gt; and adds formatting to comments.
+]]>
+</description>
+  <requiresVersion match="greaterOrEqual">0.2</requiresVersion>
+  <listens>
+  	<event name="postGetContent" type="synch" priority="5" />
+  	<event name="postGetExcerpt" type="synch" priority="5" />
+  	<event name="pageGetContent" type="synch" priority="5" />
+  	<event name="pageGetExcerpt" type="synch" priority="5" />
+  	<!-- no color coding in comments, if conflicts with paragraph formatter plugin -->
+  	<!--<event name="commentGetContent" type="synch" priority="5" />-->
+	<event name="beforeHtmlHeadEnd" type="synch" priority="5" />
+  </listens>
+</plugin>

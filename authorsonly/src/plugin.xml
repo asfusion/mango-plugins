@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.asfusion.mango.plugins.authorsonly" name="Authors Only" version="1.0" provider-name="AsFusion"
+ class="authorsonly.Handler">
+<description>Protects the blog so that only authors can read it. Note: it does not protect RSS feeds</description>
+<requiresVersion match="greaterOrEqual">1.4</requiresVersion>
+
+  <listens>
+	<event name="beforePageTemplate" type="synch" priority="10" />
+  	<event name="beforeIndexTemplate" type="synch" priority="10" />
+  	<event name="beforePostTemplate" type="synch" priority="10" />
+  	<event name="beforeArchivesTemplate" type="synch" priority="10" />
+  	<event name="beforeAuthorTemplate" type="synch" priority="10" />
+  </listens>
+
+</plugin>

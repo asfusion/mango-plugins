@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.asfusion.mango.postToTwitter" name="Post to Twitter" version="1.0" provider-name="AsFusion" 
+class="postToTwitter.Handler">
+
+<description><![CDATA[Posts to your <a href="http://www.twitter.com/" target="_blank" >twitter</a> account when a post is published]]>
+</description>
+
+  <requiresVersion match="greaterOrEqual">1.4.3</requiresVersion>
+  <listens>
+  	<event name="afterPostAdd" type="asynch" priority="5" />
+  	<event name="afterPostDelete" type="asynch" priority="5" />
+  	<event name="afterPostUpdate" type="asynch" priority="5" />
+  	<event name="settingsNav" 			type="synch" priority="5" />
+  	<event name="postToTwitter-settings" 	type="synch" priority="5" />
+  	<event name="postToTwitter-publish" 	type="asynch" priority="5" />
+  </listens>
+</plugin>

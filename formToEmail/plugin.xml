@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.asfusion.mango.plugins.formToEmail" name="Form to Email" version="1.1" 
+	provider-name="AsFusion" class="formToEmail.Handler">
+<description>A plugin to add forms to your pages. Data entered in the form will be sent by email to receipient specified. 
+&lt;a href='http://www.mangoblog.org/docs/plugins/formToEmail'&gt;Read the help documents to learn how to use it&lt;/a&gt;</description>	
+<requiresVersion match="greaterOrEqual">0.2.3</requiresVersion>
+  <listens>
+  	<event name="pageGetContent" type="synch" priority="5" />
+  	<event name="sendFormToEmail" type="synch" priority="5" />
+  </listens>
+</plugin>

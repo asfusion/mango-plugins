@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.asfusion.mango.plugins.homeChooser" name="Home Page Chooser" version="1.1" provider-name="AsFusion"
+ class="homeChooser.Handler">
+<description>Changes the index page to any other page</description>
+<requiresVersion match="greaterOrEqual">1.2</requiresVersion>
+  <listens>
+	<event name="beforePageTemplate" type="synch" priority="10" />
+  	<event name="beforeIndexTemplate" type="synch" priority="10" />
+  	<event name="getPagesByParent" type="synch" priority="10" />
+  </listens>
+  
+   <listensAdmin>
+		<event name="settingsNav" type="synch" priority="5" />
+  		<event name="homeChooser-showSettings" type="synch" priority="5" />
+  </listensAdmin>
+</plugin>

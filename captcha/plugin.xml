@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.blueinstant.captcha" name="Lyla Captcha" version="1.1" provider-name="BlueInstant" class="captcha.PluginHandler">
+<description>Adds captcha component to comment forms to prevent spam. It uses the open-source Lyla library</description>
+<requiresVersion match="greaterOrEqual">0.2</requiresVersion>
+  <listens>
+  	<event name="beforeCommentAdd" type="synch" priority="5" />
+	<event name="beforeCommentFormEnd" type="synch" priority="5" />
+	<event name="displayLylaCaptcha" type="synch" priority="5" />
+	<event name="beforeFormToEmailEnd" type="synch" priority="5" />
+	<event name="beforeFormToEmailSend" type="synch" priority="5" />
+  </listens>
+</plugin>

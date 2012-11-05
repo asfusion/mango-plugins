@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Project:     CFFormProtect plugin for Mango Blog <http://mangoblog.org>Author:      Seb Duggan <seb@sebduggan.com>Version:     1.1Build date:  2009-04-14 15:55:57Check for updated versions at <http://code.google.com/p/mangoplugins/>
+
+
+Copyright 2009 Seb Duggan
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<plugin id="com.sebduggan.mango.plugins.cfformprotect" name="CFFormProtect" version="1.1" provider-name="SebDuggan" provider-email="seb@sebduggan.com" class="cfformprotect.Handler">
+
+	<description>
+		<![CDATA[
+		Use <a href="http://cfformprotect.riaforge.org/" target="_blank">CFFormProtect</a> to combat spam invisibly and effectively.
+		]]>
+	</description>
+	
+	<requiresVersion match="greaterOrEqual">1.4</requiresVersion>
+
+	<listens>
+		<event name="beforeCommentAdd" type="synch" priority="5" />
+		<event name="beforeCommentFormEnd" type="synch" priority="6" />
+		<event name="beforeFormToEmailEnd" type="synch" priority="5" />
+		<event name="beforeFormToEmailSend" type="synch" priority="6" />
+		<event name="settingsNav" type="synch" priority="5" />
+		<event name="CFFormProtect-settings" type="synch" priority="5" />
+		<event name="CFFormProtect-akismet" type="synch" priority="5" />
+	</listens>
+	
+	<assets>
+		<asset file="assets/mouseMovement.js" />
+		<asset file="assets/usedKeyboard.js" />
+	</assets>
+	
+</plugin>

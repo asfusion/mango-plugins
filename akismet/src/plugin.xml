@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.asfusion.mango.plugins.akismet" name="Akismet" version="1.2" provider-name="AsFusion" class="akismet.Handler">
+<description><![CDATA[ Adds support for <a href="http://akismet.com/">Akismet</a> to prevent comment spam. 
+You will need a key provided by Akismet in order to use it.]]></description>
+
+	<requiresVersion match="greaterOrEqual">1.4.2</requiresVersion>
+	
+	<listens>
+		<event name="beforeCommentAdd" type="synch" priority="5" />
+		<event name="settingsNav" type="synch" priority="5" />
+  		<event name="showAkismetSettings" type="synch" priority="5" />
+	</listens>
+</plugin>

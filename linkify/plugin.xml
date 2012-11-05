@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.asfusion.mango.plugins.linkify" name="Linkify Text" version="1.0" provider-name="AsFusion" class="linkify.Linkifier">
+<description>Adds links to text in comments</description>
+ <!--  <runtime>
+      <library name="library.jar"></library>
+   </runtime>
+   <requires>
+     <import plugin="" version="1" match="greaterOrEqual" optional="true"/>
+   </requires>
+  -->
+  <requiresVersion match="greaterOrEqual">0.2</requiresVersion>
+  <listens>
+  	<event name="commentGetContent" type="synch" priority="5" />
+  </listens>
+</plugin>

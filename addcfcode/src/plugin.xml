@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.thecfguy.mango.plugins.addcfcode" 
+name="addcfcode" version="1.2" provider-name="Pritesh Patel" class="addcfcode.Handler">
+<description><![CDATA[
+addcfcode plugin allows you to execute ColdFusion code when a post or page is rendered<br/> Wrap your coldfusion code with
+[addcfcode][/addcfcode]
+<br/>Created by <a href="www.thecfguy.com">Pritesh Patel</a>]]>
+</description>
+ 	<requiresVersion match="greaterOrEqual">1.5</requiresVersion>
+	<listens>
+		<event name="postGetContent" type="synch" priority="5" />
+		<event name="pageGetContent" type="synch" priority="5" />
+		<event name="settingsNav" type="synch" priority="5" />
+  		<event name="showAddCFCodeSettings" type="synch" priority="5" />
+	</listens>
+</plugin>

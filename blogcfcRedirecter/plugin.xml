@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.asfusion.mango.blogcfcRedirecter" name="BlogCFC URLs Redirecter" version="1.0" provider-name="AsFusion" 
+class="blogcfcRedirecter.Handler">
+
+<description><![CDATA[Keeps old BlogCFC URLs working with Mango. This helps when migrating so that old links
+to imported posts will still be viewable.]]>
+</description>
+
+  <requiresVersion match="greaterOrEqual">1.4</requiresVersion>
+  <listens>
+  	<event name="beforeIndexTemplate" type="synch" priority="5" />
+  	<event name="beforeAdminPostFormDisplay" type="synch" priority="5" />
+  	<event name="beforeAdminPageFormDisplay" type="synch" priority="5" />
+  </listens>
+</plugin>

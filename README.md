@@ -1,4 +1,4 @@
-mango-plugins
+Mango Blog Plugins
 =============
 
-A repository for optional plugins
+A repository for optional plugins.

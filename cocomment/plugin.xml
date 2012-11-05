@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.asfusion.mango.plugins.cocomment" name="coComment" version="1.0" provider-name="AsFusion" class="cocomment.PluginHandler">
+<description><![CDATA[ Adds integration to <a href="http://www.cocomment.com">coComment</a>, a website that lets users track conversations on blogs and other sites ]]></description>
+<requiresVersion match="greaterOrEqual">0.2</requiresVersion>
+  <listens>
+	<event name="beforeCommentFormEnd" type="synch" priority="5" />
+  </listens>
+</plugin>

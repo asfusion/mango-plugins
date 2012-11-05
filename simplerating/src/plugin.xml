@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.asfusion.mango.simplerating" name="Simple Rating" 
+version="1.0" provider-name="AsFusion" class="simplerating.Handler">
+<description><![CDATA[
+Allows users to rate posts and pages.
+]]>
+</description>
+
+  <requiresVersion match="greaterOrEqual">1.5</requiresVersion>
+  <listens>
+  	<event name="beforeAdminPostFormDisplay" type="synch" priority="7" />
+  	<event name="simplerating-rate" type="synch" priority="7" />
+  	<event name="simplerating-saverating" type="asynch" priority="7" />
+  	<event name="simplerating-gettop" type="synch" priority="7" />
+  	<event name="beforeHtmlHeadEnd" type="synch" priority="5" />
+  	<event name="beforePostContentEnd" type="synch" priority="5" />
+  	<event name="beforePageContentEnd" type="synch" priority="5" />
+  	<event name="simplerating-settings" type="synch" priority="5" />
+  	<event name="dashboardPod" type="synch" priority="5" />
+  	<event name="simplerating-adminreport" type="synch" priority="5" />
+  	<event name="settingsNav" type="synch" priority="5" />
+  </listens>
+  
+	<assets>
+		<asset dir="assets/scripts" />
+		<asset dir="assets/styles" />
+	</assets>
+</plugin>

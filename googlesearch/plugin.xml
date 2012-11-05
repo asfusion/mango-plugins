@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.asfusion.mango.plugins.googlesearch" 
+name="Google Custom Search Engine" version="1.2" provider-name="AsFusion" class="googlesearch.Handler">
+<description><![CDATA[
+Places a Google Custom Search box in a pod on your blog's sidebar.<br />
+<a href='http://www.mangoblog.org/docs/plugins/googlesearch'>Read the help documents for more information</a>
+]]>
+</description>
+
+  <requiresVersion match="greaterOrEqual">1.2</requiresVersion>
+  <listens>
+  	<event name="settingsNav" type="synch" priority="5" />
+  	<event name="googlesearch-showSettings" type="synch" priority="5" />
+  	<event name="googlesearch-search" type="synch" priority="5" />
+  	<event name="getPods" type="synch" priority="5" />
+  	<event name="getPodsList" type="synch" priority="1" />
+  	<event name="googlesearch-showform" type="synch" priority="5" />
+  </listens>
+
+</plugin>

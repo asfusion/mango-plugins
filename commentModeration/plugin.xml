@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.asfusion.mango.plugins.commentModeration" name="Comment Moderation" version="1.0" provider-name="AsFusion" 
+class="commentModeration.Handler">
+<description><![CDATA[ Adds comment moderation. ]]></description>
+
+	<requiresVersion match="greaterOrEqual">1.2</requiresVersion>
+  <listens>
+	<event name="beforeCommentAdd" type="synch" priority="5" />
+  	<event name="settingsNav" type="synch" priority="5" />
+  	<event name="dashboardPod" type="synch" priority="1" />
+  	<event name="commentModeration-showSettings" type="synch" priority="5" />
+   	<event name="commentModeration-moderate" type="synch" priority="5" />
+	</listens>
+</plugin>

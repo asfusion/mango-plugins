@@ -1,0 +1,11 @@
+To install CFFormProtect, simply copy the cfformprotect folder into the folder:
+
+	%mango_root%/components/plugins/user
+
+Then:
+
+	- log into the Mango administrator
+	- go into Add-ons
+	- and activate CFFormProtect
+
+...and you're done!

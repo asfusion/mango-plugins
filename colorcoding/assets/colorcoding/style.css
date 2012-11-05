@@ -1,0 +1,49 @@
+.cc_numeric {
+	color:blue;
+}
+
+.cc_cftag {
+	color:maroon;
+}
+
+.cc_comment {
+	color: gray;
+	font-style: italic;
+}
+
+.cc_image {
+	color: purple;
+}
+.cc_formtag {
+	color: #FF8000;
+}
+
+.cc_anchor {
+	color:green;
+}
+
+.cc_tabletag {
+	color:teal;
+}
+
+.cc_normaltag {
+	color: navy;
+}
+
+.cc_value {
+	color:blue;
+}
+
+.cc_code, code {
+	font-family: monospace;
+	line-height: 150%;
+}
+
+.cc_specialchar {
+	font-style: italic;
+	font-weight: bold;
+}
+
+.cc_linenumber {
+	color: gray;
+}

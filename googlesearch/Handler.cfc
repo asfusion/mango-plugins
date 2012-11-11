@@ -1,4 +1,4 @@
-<cfcomponent extends="BasePlugin">
+<cfcomponent extends="org.mangoblog.plugins.BasePlugin">
 
 	<cfset variables.package = "com/asfusion/mango/plugins/googlesearch"/>
 
@@ -7,10 +7,8 @@
 		<cfargument name="mainManager" type="any" required="true" />
 		<cfargument name="preferences" type="any" required="true" />
 			
-			<cfset setManager(arguments.mainManager) />
-			<cfset setPreferencesManager(arguments.preferences) />
-						
-			<cfset initSettings(podTitle="Search", searchBoxCode='', searchResultsCode='') />
+			<cfset super.init(argumentCollection=arguments) />
+			<cfset initSettings( engineId='') />
 		<cfreturn this />
 	</cffunction>
 
@@ -70,16 +68,6 @@
 	</cffunction>
 
 	<!--- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
-	<cffunction name="handleEvent" hint="Asynchronous event handling" access="public" output="false" returntype="any">
-		<cfargument name="event" type="any" required="true" />
-		
-			<cfset var data =  "" />
-			<cfset var eventName = arguments.event.name />
-			
-		<cfreturn />
-	</cffunction>
-
-	<!--- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
 	<cffunction name="processEvent" hint="Synchronous event handling" access="public" output="false" returntype="any">
 		<cfargument name="event" type="any" required="true" />
 		
@@ -93,65 +81,71 @@
 		<cfset var link = "" />
 		<cfset var page = "" />
 		
-		<cfif eventName EQ "getPods">
-				
-				<!--- make sure we can add this to the pods list --->
-				<cfif event.allowedPodIds EQ "*" OR listfindnocase(event.allowedPodIds, "googlesearch")>
-					
-					<cfset pod = structnew() />
-					<cfset pod.title = getSetting("podTitle") />
-					<cfset pod.content = getSetting("searchBoxCode") />
-					<cfset pod.id = "googlesearch" />
-					<cfset arguments.event.addPod(pod)>
-				</cfif>
+		<cfif eventName EQ "beforeArchivesTemplate">
+			<cfif NOT structkeyexists( data.externaldata, "q" )>
+				<cfset local.blog = getManager().getBlog() />
+				<cflocation url="#local.blog.getBasePath()##local.blog.getSetting('searchUrl')#?term=#data.externaldata.term#&q=#data.externaldata.term#" addtoken="false" />
+			<cfelse>
 			
-			<cfelseif eventName EQ "googlesearch-search">
-				<cfset data.message.setData(getSetting("searchResultsCode")) />
-				<cfset data.message.setTitle("Search Results for #htmleditformat(data.externaldata.q)#")/>
-			
-			<cfelseif eventName EQ "googlesearch-showform">
-				<cfset outData = arguments.event.outputData />
-				<cfset outData = outData & getSetting("searchBoxCode") />
-				<cfset arguments.event.outputData = outData />
-			
-			<!--- admin nav event --->
-			<cfelseif eventName EQ "settingsNav">
-				<cfset link = structnew() />
-				<cfset link.owner = "googlesearch">
-				<cfset link.page = "settings" />
-				<cfset link.title = "Google Search" />
-				<cfset link.eventName = "googlesearch-showSettings" />
-				
-				<cfset arguments.event.addLink(link)>
-			
-			<!--- admin event --->
-			<cfelseif eventName EQ "googlesearch-showSettings" AND getManager().isCurrentUserLoggedIn()>			
-				<cfif structkeyexists(data.externaldata,"apply")>
-					
-					<cfset setSettings(podTitle=data.externaldata.podTitle, 
-						searchBoxCode=data.externaldata.searchBoxCode, 
-						searchResultsCode=data.externaldata.searchResultsCode) />
-					<cfset persistSettings() />
-					
-					<cfset data.message.setstatus("success") />
-					<cfset data.message.setType("settings") />
-					<cfset data.message.settext("Settings updated")/>
-				</cfif>
-				
-				<cfsavecontent variable="page">
-					<cfinclude template="admin/settingsForm.cfm">
-				</cfsavecontent>
-					
-					<!--- change message --->
-					<cfset data.message.setTitle("Google Search settings") />
-					<cfset data.message.setData(page) />
-					
-			<cfelseif eventName EQ "getPodsList"><!--- no content, just title and id --->
-				<cfset pod = structnew() />
-				<cfset pod.title = "Google Custom Search" />
-				<cfset pod.id = "googlesearch" />
-				<cfset arguments.event.addPod(pod)>
+				<cfset data.archivesTemplate = 'generic.cfm' />
+				<cfset data.message.setData("<gcse:searchresults-only></gcse:searchresults-only>") />
+				<cfset data.message.setTitle("Search Results for #htmleditformat(data.externaldata.term)#")/>
 			</cfif>
+			
+		<cfelseif eventName EQ "beforeHtmlHeadEnd">
+			<cfset outData = arguments.event.outputData />
+			<cfset outData = outData & "<script>
+	  (function() {
+	    var cx = '#getSetting( 'engineId' )#';
+	    var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+	    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+	        '//www.google.com/cse/cse.js?cx=' + cx;
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+	  })();
+	</script>" />
+			<cfset arguments.event.outputData = outData />
+			
+		<cfelseif eventName EQ "googlesearch-showform">
+			<cfset outData = arguments.event.outputData />
+			<cfset outData = outData & getSetting("searchBoxCode") />
+			<cfset arguments.event.outputData = outData />
+			
+		<!--- admin nav event --->
+		<cfelseif eventName EQ "settingsNav">
+			<cfset link = structnew() />
+			<cfset link.owner = "googlesearch">
+			<cfset link.page = "settings" />
+			<cfset link.title = "Google Search" />
+			<cfset link.eventName = "googlesearch-showSettings" />
+				
+			<cfset arguments.event.addLink(link)>
+			
+		<!--- admin event --->
+		<cfelseif eventName EQ "googlesearch-showSettings" AND getManager().isCurrentUserLoggedIn()>			
+			<cfif structkeyexists(data.externaldata,"apply")>
+					
+				<cfset setSettings( engineId=data.externaldata.engineId) />
+				<cfset persistSettings() />
+					
+				<cfset data.message.setstatus("success") />
+				<cfset data.message.setType("settings") />
+				<cfset data.message.settext("Settings updated")/>
+			</cfif>
+				
+			<cfsavecontent variable="page">
+				<cfinclude template="admin/settingsForm.cfm">
+			</cfsavecontent>
+					
+			<!--- change message --->
+			<cfset data.message.setTitle("Google Search settings") />
+			<cfset data.message.setData(page) />
+					
+		<cfelseif eventName EQ "getPodsList"><!--- no content, just title and id --->
+			<cfset pod = structnew() />
+			<cfset pod.title = "Google Custom Search" />
+			<cfset pod.id = "googlesearch" />
+			<cfset arguments.event.addPod(pod)>
+		</cfif>
 		<cfreturn arguments.event />
 	</cffunction>
 	

@@ -1,18 +1,8 @@
 <cfoutput>
 <form method="post" action="#cgi.script_name#">
 	<p>
-		<label for="podTitle">Pod Title</label>
-		<span class="field"><input type="text" id="podTitle" name="podTitle" value="#getSetting('podTitle')#" size="20"/></span>
-	</p>
-	
-	<p>
-		<label for="searchBoxCode">Search Box Code</label>
-		<span class="field"><textarea rows="10" cols="60" id="searchBoxCode" name="searchBoxCode">#getSetting("searchBoxCode")#</textarea></span>
-	</p>
-	
-	<p>
-		<label for="searchResultsCode">Search Results Code</label>
-		<span class="field"><textarea rows="10" cols="60" id="searchResultsCode" name="searchResultsCode">#getSetting("searchResultsCode")#</textarea></span>
+		<label for="podTitle">Search engine unique ID:</label>
+		<span class="field"><input type="text" id="engineId" name="engineId" value="#getSetting('engineId')#" size="45"/></span>
 	</p>
 	
 	<div class="actions">

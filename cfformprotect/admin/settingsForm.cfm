@@ -208,7 +208,26 @@ limitations under the License.
 			
 	</fieldset>
 	
-	
+<fieldset>
+		<legend>
+			<label>
+				<input type="checkbox" id="linkSleeve" name="linkSleeve" value="1"<cfif getSetting("linkSleeve") eq 1> checked="checked"</cfif>/>
+				LinkSleeve
+			</label>
+		</legend>
+
+		<p>
+			Uses the <a href="http://www.linksleeve.org/" target="_blank">LinkSleeve service</a> to check for spam.
+		</p>
+		
+		<p>
+			<label for="tooManyUrlsPoints">Failure points</label>
+			<span class="hint">How many points to award if this test fails</span>
+			<span class="field"><input type="text" id="linkSleevePoints" name="linkSleevePoints" value="#getSetting("linkSleevePoints")#" size="2" class="{required:'##linkSleeve:checked'} digits"/></span>
+		</p>
+		
+	</fieldset>
+
 	<!--- Project HoneyPot --->
 	<fieldset>
 		<legend>

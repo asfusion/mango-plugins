@@ -37,7 +37,7 @@ http://www.mozilla.org/MPL/
 		
 	<cftry>
 		<!--- send form contents to Akismet API --->
-		<cfhttp url="http://#getSetting("akismetAPIKey")#.rest.akismet.com/1.1/cdcdsubmit-#URL.type#" timeout="10" method="post" throwonerror="true">
+		<cfhttp url="http://#getSetting("akismetAPIKey")#.rest.akismet.com/1.1/submit-#URL.type#" timeout="10" method="post" throwonerror="true">
 			<cfhttpparam name="key" type="formfield" value="#getSetting("akismetAPIKey")#">
 			<cfhttpparam name="blog" type="formfield" value="#getManager().getBlog().getUrl()#">
 			<cfhttpparam name="user_ip" type="formfield" value="#urlDecode(URL.user_ip,'utf-8')#">

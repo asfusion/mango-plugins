@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-Project:     CFFormProtect plugin for Mango Blog <http://mangoblog.org>Author:      Seb Duggan <seb@sebduggan.com>Version:     1.1Build date:  2009-04-14 15:55:57Check for updated versions at <http://code.google.com/p/mangoplugins/>
+Project:     CFFormProtect plugin for Mango Blog <http://mangoblog.org>Author:      Seb Duggan <seb@sebduggan.com>Version:     1.2Build date:  2009-04-14 15:55:57Check for updated versions at <http://code.google.com/p/mangoplugins/>
 
 
 Copyright 2009 Seb Duggan
@@ -17,7 +17,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-<plugin id="com.sebduggan.mango.plugins.cfformprotect" name="CFFormProtect" version="1.1" provider-name="SebDuggan" provider-email="seb@sebduggan.com" class="cfformprotect.Handler">
+<plugin id="com.sebduggan.mango.plugins.cfformprotect" name="CFFormProtect" version="1.3" provider-name="SebDuggan" provider-email="seb@sebduggan.com" class="cfformprotect.Handler">
 
 	<description>
 		<![CDATA[
@@ -35,11 +35,11 @@ limitations under the License.
 		<event name="settingsNav" type="synch" priority="5" />
 		<event name="CFFormProtect-settings" type="synch" priority="5" />
 		<event name="CFFormProtect-akismet" type="synch" priority="5" />
+		<event name="beforeHtmlHeadEnd" type="synch" priority="5" />
 	</listens>
 	
 	<assets>
-		<asset file="assets/mouseMovement.js" />
-		<asset file="assets/usedKeyboard.js" />
+		<asset file="assets/cffp.js" />
 	</assets>
 	
 </plugin>

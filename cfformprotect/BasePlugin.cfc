@@ -1,6 +1,17 @@
 <cfcomponent output="false">
 
 <!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	
+	<cffunction name="init" access="public" output="false" returntype="any">
+		<cfargument name="mainManager" type="any" required="true" />
+		<cfargument name="preferences" type="any" required="true" />
+		
+			<cfset variables.mainManager = arguments.mainManager />
+			<cfset variables.preferencesManager = arguments.preferences />
+			
+		<cfreturn this/>
+	</cffunction>
+
+<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	
 	<cffunction name="getManager" access="public" output="false" returntype="any">
 		<cfreturn variables.mainManager />
 	</cffunction>
@@ -49,18 +60,34 @@
 	<cffunction name="unsetup" hint="This is run when a plugin is de-activated" access="public" output="false" returntype="any">
 		<cfreturn "#variables.name# de-activated" />
 	</cffunction>
+
+<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
+	<cffunction name="handleEvent" hint="Asynchronous event handling" access="public" output="false" returntype="any">
+		<cfargument name="event" type="any" required="true" />
+		
+		<cfreturn />
+	</cffunction>
+	
+<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
+	<cffunction name="processEvent" hint="Synchronous event handling" access="public" output="false" returntype="any">
+		<cfargument name="event" type="any" required="true" />
+			
+		<cfreturn arguments.event />
+	</cffunction>
 	
 <!--- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
 	<cffunction name="remove" hint="This is run when a plugin is removed" access="public" output="false" returntype="any">
 		<!--- You should override this method, but at the very least, we clean up our preferences --->
-		<cfset variables.preferencesManager.removeNode(variables.package) />
+		<cfif structkeyexists(variables,"package")>
+			<cfset variables.preferencesManager.removeNode(variables.package) />
+		</cfif>
 		<cfreturn "#variables.name# removed" />
 	</cffunction>
 
 <!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
 	<cffunction name="upgrade" hint="This is run when a plugin is upgraded" access="public" output="false" returntype="any">
 		<cfargument name="fromVersion" type="string" />
-		<cfreturn "Plugin upgraded" />
+		<cfreturn "#variables.name# upgraded" />
 	</cffunction>
 
 <!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	

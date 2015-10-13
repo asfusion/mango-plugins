@@ -81,7 +81,7 @@
 		<cfset var link = "" />
 		<cfset var page = "" />
 		
-		<cfif eventName EQ "beforeArchivesTemplate">
+		<cfif eventName EQ "beforeArchivesTemplate" AND structkeyexists( data.externaldata, "term" )>
 			<cfif NOT structkeyexists( data.externaldata, "q" )>
 				<cfset local.blog = getManager().getBlog() />
 				<cflocation url="#local.blog.getBasePath()##local.blog.getSetting('searchUrl')#?term=#data.externaldata.term#&q=#data.externaldata.term#" addtoken="false" />

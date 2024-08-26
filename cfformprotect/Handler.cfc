@@ -1,5 +1,8 @@
 <!--- 
-Project:     CFFormProtect plugin for Mango Blog <http://mangoblog.org>Author:      Seb Duggan <seb@sebduggan.com>Copyright 2009 Seb Duggan
+Project:     CFFormProtect plugin for Mango Blog <http://mangoblog.org>
+Author:      Seb Duggan <seb@sebduggan.com>
+
+Copyright 2009 Seb Duggan
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -195,10 +198,12 @@ http://www.mozilla.org/MPL/
 						</cfswitch>
 					</cfif>
 				
-			<cfelseif eventName EQ "beforeFormToEmailSend">
+			<cfelseif eventName EQ "beforeFormToEmailSend" OR eventName EQ "beforeFormProcessing">
 				<!--- inject known fields for Akismet --->
 				<cfset local.formFields = duplicate( data.originaleventdata.externaldata )/>
-				<cfset local.formFields.comment_content = data.mail.body />
+				<cfif structKeyExists( data, 'mail' ) AND structKeyExists( data.mail, 'body' )>
+					<cfset local.formFields.comment_content = data.mail.body />
+				</cfif>
 				<cfset local.additionalConfig = structnew() />
 				<cfset local.additionalConfig.akismetFormNameField = '' />
 				<cfset local.additionalConfig.akismetFormEmailField = '' />
@@ -226,7 +231,7 @@ http://www.mozilla.org/MPL/
 					</cfif>
 					
 				
-				<cfelseif eventName EQ "beforeCommentFormEnd" OR eventName EQ "beforeFormToEmailEnd">
+				<cfelseif eventName EQ "beforeCommentFormEnd" OR eventName EQ "beforeFormToEmailEnd" OR eventName EQ "beforeFormEnd">
 					<cfset LOCAL.outputData = arguments.event.getOutputData() />
 					
 					<cfsavecontent variable="LOCAL.formInputs">

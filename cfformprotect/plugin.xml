@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
-Project:     CFFormProtect plugin for Mango Blog <http://mangoblog.org>Author:      Seb Duggan <seb@sebduggan.com>Copyright 2009 Seb Duggan
+Project:     CFFormProtect plugin for Mango Blog <http://mangoblog.org>
+Author:      Seb Duggan <seb@sebduggan.com>
+Copyright 2009 Seb Duggan
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,11 +16,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-<plugin id="com.sebduggan.mango.plugins.cfformprotect" name="CFFormProtect" version="1.3" provider-name="SebDuggan" provider-email="seb@sebduggan.com" class="cfformprotect.Handler">
+<plugin id="com.sebduggan.mango.plugins.cfformprotect" name="CFFormProtect" version="1.4" provider-name="SebDuggan" provider-email="seb@sebduggan.com" class="cfformprotect.Handler">
 
 	<description>
 		<![CDATA[
-		Use <a href="http://cfformprotect.riaforge.org/" target="_blank">CFFormProtect</a> to combat spam invisibly and effectively.
+		Use CFFormProtect to combat spam invisibly and effectively.
 		]]>
 	</description>
 	
@@ -33,6 +35,8 @@ limitations under the License.
 		<event name="CFFormProtect-settings" type="synch" priority="5" />
 		<event name="CFFormProtect-akismet" type="synch" priority="5" />
 		<event name="beforeHtmlHeadEnd" type="synch" priority="5" />
+		<event name="beforeFormEnd" type="synch" priority="5" /><!-- generic form submission -->
+		<event name="beforeFormProcessing" type="synch" priority="5" /><!-- generic form submission -->
 	</listens>
 	
 	<assets>

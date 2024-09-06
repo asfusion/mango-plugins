@@ -1,0 +1,16 @@
+{
+  "id": "asfusion.canonicaltag",
+  "name": "Canonical Tag",
+  "version": "1.2",
+  "provider": "AsFusion",
+  "class":"canonicaltag.Handler",
+  "description": "Adds a canonical tag with the domain name set in admin. Useful for sites that have multiple domains pointing to it. Not tested in Adobe ColdFusion. Works in Lucee.",
+  "requires": [
+    {
+      "engine": {
+        "version": 1.8,
+        "match": "greaterOrEqual"
+      }
+    }
+  ]
+}

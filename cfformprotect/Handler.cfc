@@ -26,7 +26,7 @@ http://www.mozilla.org/MPL/
 ######
 --->
 
-<cfcomponent output="false" extends="BasePlugin">
+<cfcomponent output="false" extends="org.mangoblog.plugins.BasePlugin">
 
 <!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	
 	<cffunction name="init" access="public" output="false" returntype="any">
@@ -267,12 +267,11 @@ http://www.mozilla.org/MPL/
 					<cfset LOCAL.link = structnew() />
 					<cfset LOCAL.link.owner = "cfformprotect">
 					<cfset LOCAL.link.page = "settings" />
-					<cfset LOCAL.link.title = "CFFormProtect" />
+					<cfset LOCAL.link.title = "Form Protection" />
 					<cfset LOCAL.link.eventName = "CFFormProtect-settings" />
 					
 					<cfset arguments.event.addLink(LOCAL.link)>
 
-			
 				<cfelseif eventName EQ "CFFormProtect-settings" AND getManager().isCurrentUserLoggedIn()>		
 					<cfif structkeyexists(data.externaldata,"apply")>
 						
@@ -306,7 +305,6 @@ http://www.mozilla.org/MPL/
 					</cfsavecontent>
 						
 					<!--- change message --->
-					<cfset data.message.setTitle("CFFormProtect settings") />
 					<cfset data.message.setData(LOCAL.page) />
 
 			

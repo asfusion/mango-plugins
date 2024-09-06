@@ -1,0 +1,16 @@
+{
+  "id": "asfusion.googleanalytics",
+  "name": "Google Analytics",
+  "version": "1.5",
+  "provider": "AsFusion",
+  "class":"googleAnalytics.Handler",
+  "description": "Adds <a href=\"http://www.google.com/analytics/\">Google Analytics</a> support ",
+  "requires": [
+    {
+      "engine": {
+        "version": 1.8,
+        "match": "greaterOrEqual"
+      }
+    }
+  ]
+}

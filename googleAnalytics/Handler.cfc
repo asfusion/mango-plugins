@@ -1,11 +1,17 @@
-<cfcomponent>
-
+<cfcomponent extends="org.mangoblog.plugins.BasePlugin">
 
 	<cfset variables.name = "Google Analytics">
 	<cfset variables.id = "com.asfusion.mango.plugins.googleanalytics">
 	<cfset variables.package = "com/asfusion/mango/plugins/googleanalytics"/>
 
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	
+	<cfset this.events = [
+		{ 'name' = 'beforeHtmlBodyEnd', 'type' = 'sync', 'priority' = 5 },
+		{ 'name' = 'settingsNav', 'type' = 'sync', 'priority' = 5 },
+  		{ 'name' = 'showGoogleAnalyticsSettings', 'type' ='sync', 'priority' = 5 },
+		{ 'name' = 'dashboardPod', 'type' = 'sync', 'priority' = 5 }
+		] />
+
+	<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
 	<cffunction name="init" access="public" output="false" returntype="any">
 		<cfargument name="mainManager" type="any" required="true" />
 		<cfargument name="preferences" type="any" required="true" />
@@ -19,47 +25,12 @@
 		<cfreturn this/>
 	</cffunction>
 
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	
-	<cffunction name="getName" access="public" output="false" returntype="string">
-		<cfreturn variables.name />
-	</cffunction>
-
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	
-	<cffunction name="setName" access="public" output="false" returntype="void">
-		<cfargument name="name" type="string" required="true" />
-		<cfset variables.name = arguments.name />
-		<cfreturn />
-	</cffunction>
-
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	
-	<cffunction name="getId" access="public" output="false" returntype="any">
-		<cfreturn variables.id />
-	</cffunction>
-	
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	
-	<cffunction name="setId" access="public" output="false" returntype="void">
-		<cfargument name="id" type="any" required="true" />
-		<cfset variables.id = arguments.id />
-		<cfreturn />
-	</cffunction>
-
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	
+<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
 	<cffunction name="setup" hint="This is run when a plugin is activated" access="public" output="false" returntype="any">
 		<cfreturn "Google Analytics activated. <br />You can now <a href='generic_settings.cfm?event=showGoogleAnalyticsSettings&amp;owner=googleAnalytics&amp;selected=showGoogleAnalyticsSettings'>Configure it</a>" />
 	</cffunction>
-	
-	<cffunction name="unsetup" hint="This is run when a plugin is de-activated" access="public" output="false" returntype="any">
-		<!--- TODO: Implement Method --->
-		<cfreturn />
-	</cffunction>
 
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	
-	<cffunction name="handleEvent" hint="Asynchronous event handling" access="public" output="false" returntype="any">
-		<cfargument name="event" type="any" required="true" />		
-		<cfreturn />
-	</cffunction>
-
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	
+<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
 	<cffunction name="processEvent" hint="Synchronous event handling" access="public" output="false" returntype="any">
 		<cfargument name="event" type="any" required="true" />
 

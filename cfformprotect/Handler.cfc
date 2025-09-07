@@ -25,10 +25,22 @@ The original CFFormProtect code is covered by the Mozilla Public License:
 http://www.mozilla.org/MPL/
 ######
 --->
-
 <cfcomponent output="false" extends="org.mangoblog.plugins.BasePlugin">
 
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	
+	<cfset this.events = [
+	{ 'name' = 'beforeCommentAdd', 'type' = 'sync', 'priority' = '5' },
+	{ 'name' = 'beforeCommentFormEnd', 'type' = 'sync', 'priority' = '6' },
+	{ 'name' = 'beforeFormToEmailEnd', 'type' = 'sync', 'priority' = '5' },
+	{ 'name' = 'beforeFormToEmailSend', 'type' = 'sync', 'priority' = '6' },
+	{ 'name' = 'settingsNav', 'type' = 'sync', 'priority' = '5' },
+	{ 'name' = 'CFFormProtect-settings', 'type' = 'sync', 'priority' = '5' },
+	{ 'name' = 'CFFormProtect-akismet', 'type' = 'async', 'priority' = '5' },
+	{ 'name' = 'beforeHtmlHeadEnd', 'type' = 'sync', 'priority' = '5' },
+	{ 'name' = 'beforeFormEnd', 'type' = 'sync', 'priority' = '5' },
+	{ 'name' = 'beforeFormProcessing', 'type' = 'sync', 'priority' = '5' }
+		] />
+
+<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
 	<cffunction name="init" access="public" output="false" returntype="any">
 		<cfargument name="mainManager" type="any" required="true" />
 		<cfargument name="preferences" type="any" required="true" />
@@ -86,7 +98,7 @@ http://www.mozilla.org/MPL/
 
 <!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->	
 	<cffunction name="setup" hint="This is run when a plugin is activated" access="public" output="false" returntype="any">
-		<cfreturn "CFFormProtect plugin activated. Would you like to <a href=""generic.cfm?event=CFFormProtect-settings&owner=cfformprotect&selected=CFFormProtect-settings"">configure it now</a>?" />
+		<cfreturn "CFFormProtect plugin activated. Would you like to <a href=""generic_settings.cfm?event=CFFormProtect-settings&owner=cfformprotect&selected=CFFormProtect-settings"">configure it now</a>?" />
 	</cffunction>
 	
 <!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->

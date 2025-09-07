@@ -1,4 +1,4 @@
-<cfcomponent>
+<cfcomponent extends="org.mangoblog.plugins.BasePlugin">
 		
 <!--- Some regex code based on Canvas wiki by Raymond Camden --->		
 		
@@ -16,47 +16,12 @@
 	</cffunction>
 
 <!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
-	<cffunction name="getName" access="public" output="false" returntype="string">
-		<cfreturn variables.name />
-	</cffunction>
-
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
-	<cffunction name="setName" access="public" output="false" returntype="void">
-		<cfargument name="name" type="string" required="true" />
-		<cfset variables.name = arguments.name />
-	</cffunction>
-
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
-	<cffunction name="getId" access="public" output="false" returntype="any">
-		<cfreturn variables.id />
-	</cffunction>
-
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
-	<cffunction name="setId" access="public" output="false" returntype="void">
-		<cfargument name="id" type="any" required="true" />
-		<cfset variables.id = arguments.id />
-		<cfset variables.package = replace(variables.id,".","/","all") />
-	</cffunction>
-	
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
 	<cffunction name="setup" hint="This is run when a plugin is activated" access="public" output="false" returntype="boolean">
 		<cfset var mailTo = variables.preferences.get(variables.manager.getBlog().getId() & "/" & variables.package,"mailTo","") />
 		<cfif NOT len(mailto)>
 			<cfset variables.preferences.put(variables.manager.getBlog().getId() & "/" & variables.package,"mailTo","") />
 		</cfif>	
 		<cfreturn true />
-	</cffunction>
-
-	<cffunction name="unsetup" hint="This is run when a plugin is de-activated" access="public" output="false" returntype="any">
-
-		<cfreturn />
-	</cffunction>
-
-<!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->
-	<cffunction name="handleEvent" hint="Asynchronous event handling" access="public" output="false" returntype="any">
-		<cfargument name="event" type="any" required="true" />
-
-		<cfreturn />
 	</cffunction>
 
 <!--- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: --->

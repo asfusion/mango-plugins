@@ -7,10 +7,9 @@
   "description": "Adds a canonical tag with the domain name set in admin. Useful for sites that have multiple domains pointing to it. Not tested in Adobe ColdFusion. Works in Lucee.",
   "requires": [
     {
-      "engine": {
-        "version": 1.8,
-        "match": "greaterOrEqual"
-      }
+      "type": "engine",
+      "version": "2.0.2",
+      "match": "greaterOrEqual"
     }
   ]
 }

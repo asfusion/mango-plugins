@@ -1,0 +1,15 @@
+{
+  "id": "org.mangoblog.plugins.links",
+  "name": "Favorite Links",
+  "version": "1.0",
+  "provider": "AsFusion",
+  "class":"links.Handler",
+  "description": "Maintains a categorized list of favorite websites",
+  "requires": [
+    {
+      "type": "engine",
+      "version": "2.0.2",
+      "match": "greaterOrEqual"
+    }
+  ]
+}
